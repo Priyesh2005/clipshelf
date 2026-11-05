@@ -1,0 +1,51 @@
+UMANO DESIGN STUDY — 5 November 2026
+Reference: https://umanodesign.studio/
+Observed in a live browser, scrolling from hero through footer, on desktop and a narrow viewport.
+
+1. Floating navigation
+A centered, pale pill sits above every section. Its logo, section links and contrasting CTA fit in one compact horizontal capsule. On scroll, it becomes compact and changes active section/CTA treatment. On mobile the links become a hamburger menu.
+Why it works: the CTA stays available without a full-width navigation bar competing with the artwork.
+ClipShelf adaptation: a centered capsule with logo, How it works, Download, GitHub and one download CTA. Compact on scroll, mobile menu on narrow screens.
+
+2. Hero
+A saturated orange surface (#ff692e measured in computed styles), heavy expressive display type (AM Le Cygne), short centered headline, and a large phone-in-hand visual. Inter handles the supporting text. The product type rotates in the subtitle (Product / Brand / Mobile App). The bottom corners are 42px rounded.
+Why it works: one large visual idea, one clear promise, high contrast and memorable typography. The physical product visual carries the story.
+ClipShelf adaptation: preserve forest green identity, introduce a pale lime accent, use a licensed expressive display serif, and make a real native app screenshot the hero object. No fabricated app window.
+
+3. Trust strip
+A white section with muted brand logos and very generous space separates the hero from the narrative.
+Why it works: a quiet reset before the next argument.
+ClipShelf adaptation: factual product attributes (native macOS, local storage, MIT source, no subscription), not borrowed client logos or invented social proof.
+
+4. Scroll-revealed statement
+A large sentence changes from pale to dark as the user progresses. The statement moves from the hiring problem to the subscription solution.
+Why it works: scroll controls reading pace and highlights the argument without extra UI.
+ClipShelf adaptation: a shorter copy/find/paste statement, progressive word emphasis, readable fallback and reduced-motion support.
+
+5. Large feature panels
+A sequence of very large rounded visual cards, staggered positions, caption beneath each, progress dots in the navigation. Scrolling advances the visual sequence, including patterned marks and an oversized expanding logo transition.
+Why it works: features are visual demonstrations rather than repeated small icon cards. The changes in scale create rhythm.
+ClipShelf adaptation: actual recent-history and filtered-search captures, with text explaining shortcut controls. Large panels with restrained perspective/translation. No aggressive scroll hijacking.
+
+6. Dark case-study section
+Near-black background (#0a0d12), huge white display headline, tilted project cards crossing the headline and changing position on scroll. Animated client counter. Subsequent project details use imagery, tags and results.
+Why it works: a strong tonal change and layered product imagery make the proof section feel substantial.
+ClipShelf adaptation: dark green section with real app captures, local-first facts and a prominent 200-item limit. No invented clients, testimonials or counters.
+
+7. Pricing
+Two large image-led rounded cards on a dark background. Clear plan titles, price anchors, compact lists and CTA.
+Why it works: familiar side-by-side comparison after the story has established value.
+ClipShelf adaptation: two installation paths—download the app or install from Terminal—both free. GitHub hosts source and release assets; Vercel hosts the site.
+
+8. FAQ
+Centered heading, narrow readable column, plus/minus toggles. Open item receives a dark raised surface and orange emphasis; answers animate into view.
+Why it works: answers are available without filling the page with all details at once.
+ClipShelf adaptation: keyboard-accessible native disclosures for compatibility, first-launch warning, privacy, shortcuts and removal.
+
+9. Footer
+Large rounded orange brand block plus white link block. Oversized email lettering and a small copy-email affordance. Dark content has rounded bottom corners above it.
+Why it works: a final brand moment and useful action, not a tiny afterthought.
+ClipShelf adaptation: oversized ClipShelf wordmark, green brand block, useful GitHub/license/privacy links and a final download CTA.
+
+Motion and implementation boundaries
+Observed: rotating hero text, scroll text emphasis, feature-panel movement/scale, tilted project-card travel, counter animation, navigation state changes, FAQ expansion, hover/cursor accents. We will adapt the design principles with original styling and assets, not copy the reference's proprietary font, imagery, content or code. Real app screenshots will use only explicitly seeded demonstration text in a separate screenshot build; personal clipboard history will not be published.

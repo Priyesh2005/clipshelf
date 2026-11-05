@@ -1,1 +1,0 @@
-47e6489fb98ff4bc4fe8fc9124e460fa8f9adcf722fcdb654589366c96c9b8ec  ClipShelf-0.1.0-macOS.zip
