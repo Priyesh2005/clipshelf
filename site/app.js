@@ -27,12 +27,10 @@ function updateScroll(){
   }
   let next=0;
   steps.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.62)next=i;});
-  if(next!==active){active=next; steps.forEach((s,i)=>s.classList.toggle('is-active',i===next)); image.src=next===1?'/assets/app-search.png':'/assets/app-history.png'; image.alt=next===1?'Actual ClipShelf search showing the matching Launch checklist':'Actual ClipShelf window showing recent sample text'; document.querySelector('#step-label').textContent=['01 / COPY','02 / FIND','03 / CARRY ON'][next];}
+  if(next!==active){active=next; steps.forEach((s,i)=>s.classList.toggle('is-active',i===next)); image.src=next===1?'/assets/app-search.png':'/assets/app-history.png'; image.alt=next===1?'Actual ClipShelf search showing the matching Launch checklist':'Actual ClipShelf window showing recent sample text'; document.querySelector('#step-label').textContent=['01 / COPY','02 / FIND','03 / COPY AGAIN'][next];}
 }
 addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateScroll);}},{passive:true});
 addEventListener('resize',updateScroll); reduced.addEventListener('change',()=>{if(reduced.matches){hero.style.transform='';cards.forEach(c=>c.style.transform='');}updateScroll();});updateScroll();
-const word=document.querySelector('#rotating-word');const cycle=['words','links','notes','ideas'];let wordIndex=0;
-if(!reduced.matches){setInterval(()=>{if(document.hidden||reduced.matches)return;word.classList.add('changing');setTimeout(()=>{word.textContent=cycle[++wordIndex%cycle.length];word.classList.remove('changing');},200);},2700);}
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.1});
 document.querySelectorAll('.section-heading,.privacy-row,.install-card').forEach(e=>{e.classList.add('reveal-in');observer.observe(e);});
 document.querySelector('#copy-command').addEventListener('click',async()=>{const status=document.querySelector('#copy-status');try{await navigator.clipboard.writeText(document.querySelector('#install-command').textContent);status.textContent='Copied. Review the installer, then paste into Terminal.';}catch{status.textContent='Copy blocked by your browser. Select and copy the command above.';}});
