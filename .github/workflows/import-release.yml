@@ -1,0 +1,46 @@
+name: Import initial source and publish beta
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/import-release.yml'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import prepared source and publish verified beta
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f clipshelf-public-source.zip ]; then
+            echo 'Initial source already imported.'
+            exit 0
+          fi
+          sha256sum -c SHA256SUMS.txt
+          mkdir -p /tmp/clipshelf-release
+          cp ClipShelf-0.1.0-macOS.zip SHA256SUMS.txt /tmp/clipshelf-release/
+          unzip -o clipshelf-public-source.zip
+          chmod +x install.sh app/build.sh
+          git rm clipshelf-public-source.zip ClipShelf-0.1.0-macOS.zip SHA256SUMS.txt
+          git add .
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Publish native app source, installer, and redesigned Vercel site'
+          git push origin HEAD:main
+          cat > /tmp/clipshelf-release/notes.md <<'NOTES'
+          Free native clipboard history for macOS 13+, with Apple silicon and Intel binaries.
+
+          Copy text, open history with Control-Option-V, search, and click an entry to copy it and return to your work. Recording starts only after consent. History stays locally on your Mac. MIT licensed.
+
+          **Early beta:** Ad-hoc signed, not Apple Developer ID signed or notarized. macOS may require first-launch approval. Tested locally on Apple silicon; Intel and older macOS versions still need device testing. Do not disable Gatekeeper.
+
+          Download the ZIP below, unzip it, move ClipShelf to Applications, and open it. See README for the terminal installer, build instructions, privacy details, and removal.
+
+          SHA-256: `47e6489fb98ff4bc4fe8fc9124e460fa8f9adcf722fcdb654589366c96c9b8ec`
+          NOTES
+          gh release create v0.1.0 /tmp/clipshelf-release/ClipShelf-0.1.0-macOS.zip /tmp/clipshelf-release/SHA256SUMS.txt --target "$(git rev-parse HEAD)" --title 'ClipShelf 0.1.0 — Public beta' --prerelease --notes-file /tmp/clipshelf-release/notes.md
